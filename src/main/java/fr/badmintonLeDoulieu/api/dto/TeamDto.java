@@ -3,9 +3,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public record TeamDto(@JsonProperty("id") Long id,
                       @JsonProperty("name") String name,
-                      @JsonProperty("slogan") String slogan) {
+                      @JsonProperty("division") String division) {
 
-    public TeamDto(@JsonProperty("name") String name, @JsonProperty("slogan") String slogan) {
-        this(null, name, slogan);
+    public TeamDto(@JsonProperty("name") String name, @JsonProperty("division") String division) {
+        this(null, name, division);
     }
 }

@@ -3,34 +3,36 @@ package fr.badmintonLeDoulieu.api.Entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "team")
 public class TeamEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Column(name = "Id")
     private Long id;
 
-    @Column(name="Name")
+    @Column(name = "Name")
     private String name;
 
-    @Column(name="Slogan")
-    private String slogan;
+    @Column(name = "Division")
+    private String division;
 
-    public TeamEntity(){
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="teamId")
+    private List<PlayerEntity> players;
+
+    public TeamEntity() {
 
     }
 
-    public TeamEntity(String name, String slogan) {
-        this.name = name;
-        this.slogan = slogan;
-    }
-
-    public TeamEntity(Long id, String name, String slogan) {
+    public TeamEntity(Long id, String name, String division, List<PlayerEntity> players) {
         this.id = id;
         this.name = name;
-        this.slogan = slogan;
+        this.division = division;
+        this.players = players;
     }
 
     public Long getId() {
@@ -49,35 +51,20 @@ public class TeamEntity {
         this.name = name;
     }
 
-    public String getSlogan() {
-        return slogan;
+    public String getDivision() {
+        return division;
     }
 
-    public void setSlogan(String slogan) {
-        this.slogan = slogan;
+    public void setDivision(String division) {
+        this.division = division;
     }
 
-    public TeamEntity id(Long id){
-        this.id = id;
-        return this;
+    public List<PlayerEntity> getPlayers() {
+        return players;
     }
 
-    public TeamEntity name(String name){
-        this.name = name;
-        return this;
+    public void setPlayers(List<PlayerEntity> players) {
+        this.players = players;
     }
 
-    public TeamEntity slogan(String slogan){
-        this.slogan = slogan;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "TeamEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", slogan='" + slogan + '\'' +
-                '}';
-    }
 }

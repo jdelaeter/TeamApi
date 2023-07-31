@@ -50,11 +50,11 @@ public class TeamController {
 
 
     private TeamDto toDto(TeamEntity teamEntity){
-        return new TeamDto(teamEntity.getId(), teamEntity.getName(), teamEntity.getSlogan());
+        return new TeamDto(teamEntity.getId(), teamEntity.getName(), teamEntity.getDivision());
     }
 
     private TeamEntity toEntity(TeamDto teamDto){
-        return new TeamEntity().name(teamDto.name()).slogan(teamDto.slogan());
+        return new TeamEntity(teamDto.id(),teamDto.name(),teamDto.division(),null);
     }
 }
 
